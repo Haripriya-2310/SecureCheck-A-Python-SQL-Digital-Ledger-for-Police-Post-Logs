@@ -9,7 +9,7 @@ def create_connection():
         connection = pymysql.connect(
             host='127.0.0.1',
             user="root",
-            password='Haripriya@23',
+            password='',
             database="policeledger",
             cursorclass=pymysql.cursors.DictCursor  # So we get column names
         )
@@ -362,3 +362,4 @@ elif menu=="Predict Outcome🎯":
         **{search_text}**, received a **{predicted_outcome}** and **{drug_text}**.                   
     """) 
     
+
