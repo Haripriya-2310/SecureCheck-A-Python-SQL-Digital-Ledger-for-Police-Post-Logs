@@ -11,7 +11,7 @@ def create_connection():
             user="root",
             password='',
             database="policeledger",
-            cursorclass=pymysql.cursors.DictCursor  # So we get column names
+            cursorclass=pymysql.cursors.DictCursor  # To get column names
         )
         return connection
     except Exception as exp:
@@ -61,7 +61,7 @@ if menu == "Home🏛️":
     st.subheader("**WELCOME**")
 
 elif menu == "Police Logs Overview🗂️":
-    st.header("_Digital Ledger for Police Post Logs_") #change color
+    st.header("_Digital Ledger for Police Post Logs_") 
     query = "SELECT * FROM police_post_logs"
     data = fetch_data(query)
     st.dataframe(data, use_container_width=True)
@@ -155,7 +155,7 @@ elif menu == "Medium level analysis📉":
                                                             GROUP BY driver_race, driver_gender
                                                             ORDER BY search_percent_rate DESC LIMIT 1""",
 
-                                                 #HOUR FROM stop_time) AS Hour
+                                                
         "Time of day with most traffic stops" :"""SELECT HOUR(STR_TO_DATE(stop_time, '%Y-%m-%D %H:%m:%S')) AS stop_hour, COUNT(*) AS total_stops
                                                 FROM police_post_logs
                                                 WHERE stop_time IS NOT NULL
@@ -336,7 +336,7 @@ elif menu=="Predict Outcome🎯":
                             (data["drugs_related_stop"]==drugs_related_stop)
             ]
 
-    #Predict Stop_Outcome and violation
+    #Predict Stop Outcome and Violation
 
     if not filtered_data.empty:
         predicted_outcome = filtered_data["Stop Outcome"].mode()[0]
@@ -362,4 +362,5 @@ elif menu=="Predict Outcome🎯":
         **{search_text}**, received a **{predicted_outcome}** and **{drug_text}**.                   
     """) 
     
+
 
