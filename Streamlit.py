@@ -156,7 +156,7 @@ elif menu == "Medium level analysis📉":
                                                             ORDER BY search_percent_rate DESC LIMIT 1""",
 
                                                 
-        "Time of day with most traffic stops" :"""SELECT HOUR(STR_TO_DATE(stop_time, '%Y-%m-%D %H:%m:%S')) AS stop_hour, COUNT(*) AS total_stops
+        "Time of day with most traffic stops" :"""SELECT HOUR(STR_TO_DATE(stop_time, '%Y-%m-%d %H:%i:%s')) AS stop_hour, COUNT(*) AS total_stops
                                                 FROM police_post_logs
                                                 WHERE stop_time IS NOT NULL
                                                 GROUP BY stop_hour 
@@ -362,5 +362,6 @@ elif menu=="Predict Outcome🎯":
         **{search_text}**, received a **{predicted_outcome}** and **{drug_text}**.                   
     """) 
     
+
 
 
