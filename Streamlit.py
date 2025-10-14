@@ -106,6 +106,7 @@ elif menu == "Medium level analysis📉":
     medium_queries = st.selectbox("Select your question to run:",
         [
             "Top 10 vehicle number involed in drug related stops" ,
+            "Vehicles were most frequently searched",
             "Driver age group with highest arrest rate" ,
             "Gender distribution of drivers stopped in each country",
             "Race and gender combination with highest search rate",
@@ -117,7 +118,7 @@ elif menu == "Medium level analysis📉":
             "Violation that rarely resulting in search or arrest",
             "Countries that report with highest drug-related stop rates" ,
             "Arrest rate by country and violation",
-             "Country has the most stops with search conducted" ,
+            "Country has the most stops with search conducted" ,
         ]
     )
     query_map = {
@@ -125,7 +126,12 @@ elif menu == "Medium level analysis📉":
                                                         FROM police_post_logs WHERE drugs_related_stop = TRUE 
                                                         GROUP BY vehicle_number
                                                         ORDER BY drugs_related_stop DESC LIMIT 10""",
-
+        
+        "Vehicles were most frequently searched" : """SELECT vehicle_number, COUNT(*) AS search_count 
+                                                    FROM police_post_logs WHERE search_conducted = TRUE 
+                                                    GROUP BY vehicle_number, search_conducted 
+                                                    ORDER BY search_count DESC LIMIT 15 """,
+        
         "Driver age group with highest arrest rate" :"""SELECT CASE
                                                     WHEN driver_age BETWEEN 18 AND 25 THEN '18-25'
                                                     WHEN driver_age BETWEEN 26 AND 35 THEN '26-35'
@@ -362,6 +368,7 @@ elif menu=="Predict Outcome🎯":
         **{search_text}**, received a **{predicted_outcome}** and **{drug_text}**.                   
     """) 
     
+
 
 
 
