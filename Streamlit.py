@@ -244,7 +244,7 @@ elif menu == "Complex level analysis🧩":
     )
     query_map_1 = {
         "Yearly breakdown of stops and arrests by country" : """SELECT country_name, 
-                                                                EXTRACT(YEAR FROM Stop_date) AS stop_date, COUNT(*) AS total_stops, 
+                                                                EXTRACT(YEAR FROM Stop_date) AS stop_year, COUNT(*) AS total_stops, 
                                                                 SUM(CASE WHEN is_arrested = TRUE THEN 1 ELSE 0 END) AS total_arrests, 
                                                                 ROUND(SUM(CASE WHEN is_arrested = TRUE THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS Arrest_rate_percent, 
                                                                 RANK() OVER (PARTITION BY Stop_date ORDER BY SUM(CASE WHEN is_arrested = TRUE THEN 1 ELSE 0 END) DESC) AS Arrest_rank 
@@ -362,6 +362,7 @@ elif menu=="Predict Outcome🎯":
         **{search_text}**, received a **{predicted_outcome}** and **{drug_text}**.                   
     """) 
     
+
 
 
 
