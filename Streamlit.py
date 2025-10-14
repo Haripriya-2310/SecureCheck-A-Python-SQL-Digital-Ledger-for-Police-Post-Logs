@@ -218,11 +218,11 @@ elif menu == "Medium level analysis📉":
                                                GROUP BY country_name, violation
                                                ORDER BY country_name""",
  
-        "Country has the most stops with search conducted" :"""select country_name, count(*) as total_stops
-                                                              from police_post_logs
-                                                              group by country_name
-                                                              order by total_stops
-                                                              desc limit 1""",
+        "Country has the most stops with search conducted" :"""select country_name, count(*) as search_count
+                                                              FROM police_post_logs WHERE search_conducted = TRUE 
+                                                              GROUP BY  country_name
+                                                              ORDER BY search_count
+                                                              DESC LIMIT 1"""
 }
     
 
@@ -368,6 +368,7 @@ elif menu=="Predict Outcome🎯":
         **{search_text}**, received a **{predicted_outcome}** and **{drug_text}**.                   
     """) 
     
+
 
 
 
